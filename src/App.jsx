@@ -1,14 +1,16 @@
+import { useState } from "react"
 import Star from "./assets/icon-star.svg"
 import Thank from "./assets/illustration-thank-you.svg"
 
 
 function App() {
+  let [isSubmitted, setIsSubmitted] = useState(false); 
   const Button = ({ number }) => {
     return  <button className="bg-gray-700 h-10 w-10 rounded-full pt-1 text-gray-200 focus:bg-gray-400">{number}</button>
   }
   return (
    <>
-   <div className="bg-DarkBlue p-8 rounded-[30px] min-w-[400px] wrapper ">
+   {!isSubmitted && <div className="bg-DarkBlue p-8 rounded-[30px] min-w-[400px] wrapper ">
     <img src={Star} className="bg-gray-700 p-2 rounded-full" />
     <h2 className="text-gray-100 text-3xl my-7">How did we do?</h2>
     <p className="text-gray-300 mb-10">Please let us know how we did with your support request. All feedback is appreciates to help us impove offering!</p>
@@ -30,11 +32,11 @@ function App() {
       </li>
     </ul>
     <div className="text-center">
-    <button className="bg-orange w-full text-white uppercase py-3 rounded-full hover:bg-black">Submit</button>
+        <button onClick={() => setIsSubmitted(true)} className="bg-orange w-full text-white uppercase py-3 rounded-full hover:bg-black">Submit</button>
     </div>
-   </div>
-   <ThankYou />
+   </div>}
   
+{isSubmitted && <ThankYou />}
    </>
    
  
@@ -47,10 +49,17 @@ const ThankYou = () => {
   return (
     <>  
     <div className="bg-DarkBlue p-8 rounded-[30px] min-w-[400px]">
-       <img src={Thank} className="bg-gray-700 p-2 block mx-auto rounded-full"/>
-    <p className="text-gray-100 text-center text-3xl">you selected number out of 5</p>
+       <img src={Thank} className="bg-gray-700 p-2 block mb-5 mx-auto rounded-full"/>
+       <div className="flex items-center justify-center">
+        <p className="p-rating bg-gray-700 rounded-full text-center text-sm px-4 pt-1">
+          You selected number out of 5
+        </p>
+      </div>
     <h2 className="text-gray-100 text-3xl my-7 text-center">Thank you</h2>
     <p className="text-gray-300  text-center mb-10">Please let us know how we did with your support request. All feedback is appreciates to help us impove offering!</p>
+    <div className="text-center">
+    <button onClick={() => setIsSubmitted(false)} className="bg-orange w-full text-white uppercase py-3 rounded-full hover:bg-black">Rate again</button>
+    </div>
     </div>
    
     </>
