@@ -5,8 +5,9 @@ import Thank from "./assets/illustration-thank-you.svg"
 
 function App() {
   let [isSubmitted, setIsSubmitted] = useState(false); 
+  let [items, setItems] = useState("");
   const Button = ({ number }) => {
-    return  <button className="bg-gray-700 h-10 w-10 rounded-full pt-1 text-gray-200 focus:bg-gray-400">{number}</button>
+    return  <button onClick={() => setItems(number)} className="bg-gray-700 h-10 w-10 rounded-full pt-1 text-gray-200 focus:bg-gray-400">{number}</button>
   }
   return (
    <>
@@ -36,7 +37,7 @@ function App() {
     </div>
    </div>}
   
-{isSubmitted && <ThankYou />}
+{isSubmitted && <ThankYou items={items} setIsSubmitted={setIsSubmitted}/>}
    </>
    
  
@@ -45,14 +46,14 @@ function App() {
   );
 }
 
-const ThankYou = () => {
+const ThankYou = ({items, setIsSubmitted}) => {
   return (
     <>  
     <div className="bg-DarkBlue p-8 rounded-[30px] min-w-[400px]">
        <img src={Thank} className="bg-gray-700 p-2 block mb-5 mx-auto rounded-full"/>
        <div className="flex items-center justify-center">
         <p className="p-rating bg-gray-700 rounded-full text-center text-sm px-4 pt-1">
-          You selected number out of 5
+          You selected {items} out of 5
         </p>
       </div>
     <h2 className="text-gray-100 text-3xl my-7 text-center">Thank you</h2>
