@@ -52,7 +52,7 @@ const ThankYou = ({items, setIsSubmitted}) => {
     <div className="bg-DarkBlue p-8 rounded-[30px] min-w-[400px]">
        <img src={Thank} className="bg-gray-700 p-2 block mb-5 mx-auto rounded-full"/>
        <div className="flex items-center justify-center">
-        <p className="p-rating bg-gray-700 rounded-full text-center text-sm px-4 pt-1">
+        <p className="p-rating bg-gray-700 rounded-full text-center text-white text-sm px-4 pt-1">
           You selected {items} out of 5
         </p>
       </div>
